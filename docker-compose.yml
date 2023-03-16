@@ -1,0 +1,207 @@
+version: "3.9"
+services:
+
+#vault-svc
+  #user
+  vault-user:
+    image: mahakziroh2/zunu:docker-vault-user-v1.0
+    restart: always
+    environment:
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+    networks:
+      - vault-network
+  #keys
+  vault-keys:
+    image: mahakziroh2/zunu:docker-vault-keys-v1.0
+    restart: always
+    environment:
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+    networks:
+      - vault-network
+  #apikeys
+  vault-apikeys:
+    image: mahakziroh2/zunu:docker-vault-apikeys-v1.0
+    restart: always
+    environment:
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+    networks:
+      - vault-network
+  #fsn
+  vault-fsn:
+    image: mahakziroh2/zunu:docker-vault-fsn-v1.0
+    restart: always
+    environment:
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}    
+    networks:
+      - vault-network
+  #mailstore
+  vault-mailstore:
+    image: mahakziroh2/zunu:docker-vault-mailstore-v1.0
+    restart: always
+    environment:
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+    networks:
+      - vault-network
+  #omail
+  vault-omail:
+    image: mahakziroh2/zunu:docker-vault-omail-v1.0
+    restart: always
+    environment:
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+    networks:
+      - vault-network
+  #cloudsync
+  vault-cloudsync:
+    image: mahakziroh2/zunu:docker-vault-cloudsync-v1.0
+    restart: always
+    environment:
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+    networks:
+      - vault-network
+  #ostor
+  vault-ostor:
+    image: mahakziroh2/zunu:docker-vault-ostor-v1.0
+    restart: always
+    environment:
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+    networks:
+      - vault-network
+  #pushnotification
+  vault-pushnotificatin:
+    image: mahakziroh2/zunu:docker-vault-pushnotification-v1.0
+    restart: always
+    environment:
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+    networks:
+      - vault-network
+  #notification
+  vault-notification:
+    image: mahakziroh2/zunu:docker-vault-notification-v1.0
+    restart: always
+    environment:
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+    networks:
+      - vault-network
+  #live
+  vault-live:
+    image: mahakziroh2/zunu:docker-vault-live-v1.0
+    restart: always
+    environment:
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+    networks:
+      - vault-network
+  #zunuaudit
+  vault-zunuaudit:
+    image: mahakziroh2/zunu:docker-vault-zunuaudit-v1.0
+    restart: always
+    environment:
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+    networks:
+      - vault-network
+  #index
+  vault-index:
+    image: mahakziroh2/zunu:docker-vault-index-v1.0
+    restart: always
+    environment:
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+    networks:
+      - vault-network
+  #captcha
+  vault-captcha:
+    image: mahakziroh2/zunu:docker-vault-captcha-v1.0
+    restart: always
+    environment:
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+    networks:
+      - vault-network
+  #upload
+  vault-upload:
+    image: mahakziroh2/zunu:docker-vault-upload-v1.0
+    restart: always
+    environment:
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+    networks:
+      - vault-network
+  #otp
+  vault-otp:
+    image: mahakziroh2/zunu:docker-vault-otp-v1.0
+    restart: always
+    environment:
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+    networks:
+      - vault-network
+  #newsletter
+  vault-newsletter:
+    image: mahakziroh2/zunu:docker-vault-newsletter-v1.0
+    restart: always
+    environment:
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+    networks:
+      - vault-network
+
+# nginx
+  web:
+    image: mahakziroh2/zunu:docker-nginx-ssl-v1.0
+    restart: always
+    ports:
+      - 80:80/tcp
+      - 443:443/tcp
+    environment:
+        CERTBOT_EMAIL: ${CERTBOT_EMAIL}
+        ENVSUBST_VARS: ${ENVSUBST_VARS}
+        FQDN: ${FQDN}
+    volumes:
+       - letsencrypt:/etc/letsencrypt
+    networks:
+      - vault-network
+# pgsql
+  pgsql:
+    image: mahakziroh2/zunu:docker_client_postgres-12
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATA: ${PGDATA}
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+    volumes:
+    - "PGDATA:/data/postgresql"
+    networks:
+      - vault-network
+
+# mongo
+  mongo:
+    image: "mongo:5.0.9"
+    restart: "always"
+    ports:
+      - "27017:27017"
+    volumes:
+      - "MONGODATA:/data/db"
+    networks:
+      - vault-network
+
+volumes:
+  PGDATA:
+  MONGODATA:
+  letsencrypt:
+
+networks:
+  vault-network:
