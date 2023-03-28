@@ -4,7 +4,7 @@ services:
 #vault-svc
   #user
   vault-user:
-    image: mahakziroh2/zunu:docker-vault-user-v1.0
+    image: mahakziroh2/zunu:docker-vault-user-${vault_version}
     restart: always
     environment:
       pgdb_user: ${pgdb_user}
@@ -13,7 +13,7 @@ services:
       - vault-network
   #keys
   vault-keys:
-    image: mahakziroh2/zunu:docker-vault-keys-v1.0
+    image: mahakziroh2/zunu:docker-vault-keys-${vault_version}
     restart: always
     environment:
       pgdb_user: ${pgdb_user}
@@ -22,7 +22,7 @@ services:
       - vault-network
   #apikeys
   vault-apikeys:
-    image: mahakziroh2/zunu:docker-vault-apikeys-v1.0
+    image: mahakziroh2/zunu:docker-vault-apikeys-${vault_version}
     restart: always
     environment:
       pgdb_user: ${pgdb_user}
@@ -31,7 +31,7 @@ services:
       - vault-network
   #fsn
   vault-fsn:
-    image: mahakziroh2/zunu:docker-vault-fsn-v1.0
+    image: mahakziroh2/zunu:docker-vault-fsn-${vault_version}
     restart: always
     environment:
       pgdb_user: ${pgdb_user}
@@ -40,7 +40,7 @@ services:
       - vault-network
   #mailstore
   vault-mailstore:
-    image: mahakziroh2/zunu:docker-vault-mailstore-v1.0
+    image: mahakziroh2/zunu:docker-vault-mailstore-${vault_version}
     restart: always
     environment:
       pgdb_user: ${pgdb_user}
@@ -49,7 +49,7 @@ services:
       - vault-network
   #omail
   vault-omail:
-    image: mahakziroh2/zunu:docker-vault-omail-v1.0
+    image: mahakziroh2/zunu:docker-vault-omail-${vault_version}
     restart: always
     environment:
       pgdb_user: ${pgdb_user}
@@ -58,7 +58,7 @@ services:
       - vault-network
   #cloudsync
   vault-cloudsync:
-    image: mahakziroh2/zunu:docker-vault-cloudsync-v1.0
+    image: mahakziroh2/zunu:docker-vault-cloudsync-${vault_version}
     restart: always
     environment:
       pgdb_user: ${pgdb_user}
@@ -67,7 +67,7 @@ services:
       - vault-network
   #ostor
   vault-ostor:
-    image: mahakziroh2/zunu:docker-vault-ostor-v1.0
+    image: mahakziroh2/zunu:docker-vault-ostor-${vault_version}
     restart: always
     environment:
       pgdb_user: ${pgdb_user}
@@ -76,7 +76,7 @@ services:
       - vault-network
   #pushnotification
   vault-pushnotificatin:
-    image: mahakziroh2/zunu:docker-vault-pushnotification-v1.0
+    image: mahakziroh2/zunu:docker-vault-pushnotification-${vault_version}
     restart: always
     environment:
       pgdb_user: ${pgdb_user}
@@ -85,7 +85,7 @@ services:
       - vault-network
   #notification
   vault-notification:
-    image: mahakziroh2/zunu:docker-vault-notification-v1.0
+    image: mahakziroh2/zunu:docker-vault-notification-${vault_version}
     restart: always
     environment:
       pgdb_user: ${pgdb_user}
@@ -94,7 +94,7 @@ services:
       - vault-network
   #live
   vault-live:
-    image: mahakziroh2/zunu:docker-vault-live-v1.0
+    image: mahakziroh2/zunu:docker-vault-live-${vault_version}
     restart: always
     environment:
       pgdb_user: ${pgdb_user}
@@ -103,7 +103,7 @@ services:
       - vault-network
   #zunuaudit
   vault-zunuaudit:
-    image: mahakziroh2/zunu:docker-vault-zunuaudit-v1.0
+    image: mahakziroh2/zunu:docker-vault-zunuaudit-${vault_version}
     restart: always
     environment:
       pgdb_user: ${pgdb_user}
@@ -112,7 +112,7 @@ services:
       - vault-network
   #index
   vault-index:
-    image: mahakziroh2/zunu:docker-vault-index-v1.0
+    image: mahakziroh2/zunu:docker-vault-index-${vault_version}
     restart: always
     environment:
       pgdb_user: ${pgdb_user}
@@ -121,7 +121,7 @@ services:
       - vault-network
   #captcha
   vault-captcha:
-    image: mahakziroh2/zunu:docker-vault-captcha-v1.0
+    image: mahakziroh2/zunu:docker-vault-captcha-${vault_version}
     restart: always
     environment:
       pgdb_user: ${pgdb_user}
@@ -130,7 +130,7 @@ services:
       - vault-network
   #upload
   vault-upload:
-    image: mahakziroh2/zunu:docker-vault-upload-v1.0
+    image: mahakziroh2/zunu:docker-vault-upload-${vault_version}
     restart: always
     environment:
       pgdb_user: ${pgdb_user}
@@ -139,7 +139,7 @@ services:
       - vault-network
   #otp
   vault-otp:
-    image: mahakziroh2/zunu:docker-vault-otp-v1.0
+    image: mahakziroh2/zunu:docker-vault-otp-${vault_version}
     restart: always
     environment:
       pgdb_user: ${pgdb_user}
@@ -148,7 +148,7 @@ services:
       - vault-network
   #newsletter
   vault-newsletter:
-    image: mahakziroh2/zunu:docker-vault-newsletter-v1.0
+    image: mahakziroh2/zunu:docker-vault-newsletter-${vault_version}
     restart: always
     environment:
       pgdb_user: ${pgdb_user}
